@@ -20,7 +20,7 @@ public class EditCommand extends Command {
             + "\n\t"
             + "Parameters: INDEX p/NEW_NUMBER\n\t"
             + "Example: " + COMMAND_WORD
-            + " John Doe p/98765432";
+            + " 1 p/999";
 
     public static final String MESSAGE_SUCCESS = "%1$s edited.";
     
