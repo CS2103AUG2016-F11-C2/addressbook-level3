@@ -58,6 +58,14 @@ public class Person implements ReadOnlyPerson {
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
     }
+    
+    /**
+     * Replaces this person's phone number with the given new phone number.
+     * @param newPhone
+     */
+    public void editPhone(Phone newPhone) {
+    	this.phone = newPhone;
+    }
 
     /**
      * Replaces this person's tags with the tags in the argument tag list.
