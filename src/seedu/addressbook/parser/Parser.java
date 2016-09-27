@@ -65,6 +65,9 @@ public class Parser {
             case DeleteCommand.COMMAND_WORD:
                 return prepareDelete(arguments);
 
+            case EditCommand.COMMAND_WORD:
+            	return prepareEdit(arguments);
+                
             case ClearCommand.COMMAND_WORD:
                 return new ClearCommand();
 
@@ -156,6 +159,27 @@ public class Parser {
         } catch (ParseException | NumberFormatException e) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
+    }
+    
+    /**
+     * Parses arguments in the context of the edit command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareEdit(String args) {
+
+    	// Split args into index and input phone number
+    	String[] argsArray = args.split(" p/");
+    	try {
+    		final int targetIndex = parseArgsAsDisplayedIndex(argsArray[0]);
+    		final String targetNewPhone = argsArray[1];
+    		return new EditCommand(targetIndex, targetNewPhone, false);
+    	} catch (ParseException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+    		return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+    	} catch (IllegalValueException ive) {
+    		return new IncorrectCommand(ive.getMessage());
+    	}
     }
 
     /**
