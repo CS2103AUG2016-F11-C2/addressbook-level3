@@ -10,8 +10,7 @@ import seedu.addressbook.logic.Logic;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static seedu.addressbook.common.Messages.*;
 
@@ -82,7 +81,13 @@ public class MainWindow {
         clearOutputConsole();
         final Optional<List<? extends ReadOnlyPerson>> resultPersons = result.getRelevantPersons();
         if(resultPersons.isPresent()) {
-            display(resultPersons.get());
+            List<? extends ReadOnlyPerson> persons = new ArrayList<ReadOnlyPerson>(resultPersons.get());
+                        persons.sort((ReadOnlyPerson a, ReadOnlyPerson b)->a.getName().fullName.compareToIgnoreCase(b.getName().fullName));
+                        for (ReadOnlyPerson p : persons) {
+                            System.out.print(p.getName().fullName + ", ");
+                        }
+                        System.out.println();
+                        display(persons);
         }
         display(result.feedbackToUser);
     }
