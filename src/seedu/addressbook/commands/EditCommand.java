@@ -38,7 +38,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final Person target = getEditablePerson();
+            final ReadWritePerson target = getEditablePerson();
             if (!addressBook.containsPerson(target)) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }

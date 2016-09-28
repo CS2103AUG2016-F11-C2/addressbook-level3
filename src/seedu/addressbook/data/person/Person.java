@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Person implements ReadOnlyPerson, ReadWritePerson {
 
     private Name name;
     private Phone phone;
@@ -63,6 +63,7 @@ public class Person implements ReadOnlyPerson {
      * Replaces this person's phone number with the given new phone number.
      * @param newPhone
      */
+    @Override
     public void editPhone(Phone newPhone) {
     	this.phone = newPhone;
     }
